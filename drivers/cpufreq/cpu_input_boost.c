@@ -319,12 +319,44 @@ static int __init cpu_input_boost_init(void)
 		INIT_DELAYED_WORK(&b->restore_work, cpu_restore_main);
 	}
 
-	INIT_WORK(&boost_work, cpu_boost_main);
+	spin_lock_init(&b->lock);
+
+	INIT_WORK(&b->fb.boost_work, fb_boost_main);
+	INIT_DELAYED_WORK(&b->fb.unboost_work, fb_unboost_main);
+	INIT_WORK(&b->ib.boost_work, ib_boost_main);
+	INIT_WORK(&b->ib.reboost_work, ib_reboost_main);
+
+	for_each_possible_cpu(cpu) {
+		struct ib_pcpu *pcpu = per_cpu_ptr(b->ib.boost_info, cpu);
+
+		pcpu->cpu = cpu;
+		INIT_DELAYED_WORK(&pcpu->unboost_work, ib_unboost_main);
+	}
+
+	/* Allow global boost config access */
+	boost_policy_g = b;
+
+	ret = input_register_handler(&cpu_ib_input_handler);
+	if (ret) {
+		pr_err("Failed to register input handler, err: %d\n", ret);
+		goto free_mem;
+	}
 
 	ret = input_register_handler(&cpu_boost_input_handler);
 	if (ret)
-		pr_err("Failed to register input handler, err: %d\n", ret);
-err:
+		goto input_unregister;
+
+	cpufreq_register_notifier(&do_cpu_boost_nb, CPUFREQ_POLICY_NOTIFIER);
+
+	fb_register_client(&fb_notifier_callback_nb);
+
+	return 0;
+
+input_unregister:
+	input_unregister_handler(&cpu_ib_input_handler);
+free_mem:
+	free_percpu(b->ib.boost_info);
+	kfree(b);
 	return ret;
 }
 late_initcall(cpu_input_boost_init);
