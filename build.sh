@@ -26,6 +26,7 @@ export KBUILD_BUILD_USER=reza-adi-pangestu
 export KBUILD_BUILD_HOST=server
 export ARCH=arm64
 export SUBARCH=arm64
+export USE_CCACHE=1
 export CLANG_PATH=/root/clang/bin
 export PATH=${CLANG_PATH}:${PATH}
 export CLANG_TRIPLE=aarch64-linux-gnu-
