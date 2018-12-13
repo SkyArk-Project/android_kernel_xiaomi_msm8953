@@ -15,7 +15,7 @@
 	dsi_nt35596_tianma_fhd_vid: qcom,mdss_dsi_nt35596_tianma_fhd_video {
 		qcom,mdss-dsi-panel-name = "nt35596 tianma fhd video mode dsi panel";
 		qcom,mdss-dsi-panel-type = "dsi_video_mode";
-		qcom,mdss-dsi-panel-framerate = <60>;
+		qcom,mdss-dsi-panel-framerate = <65>;
 		qcom,mdss-dsi-virtual-channel-id = <0>;
 		qcom,mdss-dsi-stream = <0>;
 		qcom,mdss-dsi-panel-width = <1080>;

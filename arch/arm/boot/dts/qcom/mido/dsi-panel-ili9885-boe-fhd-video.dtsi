@@ -15,7 +15,7 @@
 	dsi_ili9885_boe_fhd_vid: qcom,mdss_dsi_ili9885_boe_fhd_video {
 		qcom,mdss-dsi-panel-name = "ili9885 boe fhd video mode dsi panel";
 		qcom,mdss-dsi-panel-type = "dsi_video_mode";
-		qcom,mdss-dsi-panel-framerate = <60>;
+		qcom,mdss-dsi-panel-framerate = <65>;
 		qcom,mdss-dsi-virtual-channel-id = <0>;
 		qcom,mdss-dsi-stream = <0>;
 		qcom,mdss-dsi-panel-width = <1080>;
