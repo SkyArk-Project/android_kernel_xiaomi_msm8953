@@ -38,6 +38,11 @@ dump_boot;
 
 # begin ramdisk changes
 
+mount -o rw,remount -t auto /vendor >/dev/null;
+rm -rf vendor/etc/perf;
+mount -o ro,remount -t auto /vendor >/dev/null;
+
+
 # init.rc
 insert_line init.rc 'SkyArk' after 'import /init.\${ro.zygote}.rc' 'import /init.SkyArk.rc';
 
