@@ -19,7 +19,7 @@ KERNEL_DIR=$PWD
 REPACK_DIR=$KERNEL_DIR/zip
 OUT=$KERNEL_DIR/out
 ZIP_NAME="$VERSION"-"$DATE"
-VERSION="mido-2.1-OandP"
+VERSION="mido-2.2-OandP"
 DATE=$(date +%Y%m%d-%H%M)
 
 export KBUILD_BUILD_USER=reza-adi-pangestu
