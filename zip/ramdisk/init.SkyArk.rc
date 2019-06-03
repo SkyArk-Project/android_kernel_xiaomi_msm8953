@@ -6,6 +6,7 @@ import /init.performance_profiles.rc
 on property:sys.boot_completed=1
     # Declare support for Franco Kernel Manager Performance Profiles
     setprop fku.profiles 1
+    setprop pm.sleep_mode 1
 
 on post-fs-data
 
@@ -35,4 +36,4 @@ on property:sys.boot_completed=1
     swapon /dev/block/zram0
     write /sys/block/zram0/comp_algorithm lz4
     write /sys/block/zram0/max_comp_streams 4
-    write /sys/block/zram0/disksize 766666666
+    write /sys/block/zram0/disksize 866666666
